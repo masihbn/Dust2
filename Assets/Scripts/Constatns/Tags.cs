@@ -31,4 +31,10 @@ public class Tags : MonoBehaviour
         public const string DEAD_TRIGGER = "Dead";
 
     }
+
+    public enum WeaponFireType
+    {
+        SINGLE,
+        MULTIPLE
+    }
 }
