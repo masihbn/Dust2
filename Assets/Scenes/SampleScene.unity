@@ -899,6 +899,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 230696836, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: footstepClip.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 230696836, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: footstepClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ccececb15ebd77d4ab8e0ab055c542c4, type: 3}
+    - target: {fileID: 230696836, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: footstepClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 549c31321bbc52c42a560a288bcf29f7, type: 3}
+    - target: {fileID: 230696836, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: footstepClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: e0b86a72cbfee8e4597d48feda284c36, type: 3}
+    - target: {fileID: 230696836, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: footstepClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 980f07dba6baef547af0b55fb984717a, type: 3}
     - target: {fileID: 2719756691328840488, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
       propertyPath: m_RootOrder
       value: 2

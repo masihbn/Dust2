@@ -19,11 +19,24 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isCrouching;
 
+    // Walking audio
+    private PlayerFootsteps footsteps;
+    private float sprintVolume = 1f, crouchVolume = 0.1f,
+        walkVolumeMin = 0.2f, walkVolumeMax = 0.6f;
+    private float walkStepDistance = 0.4f, sprintStepDistance = 0.25f, crouchStepDistance = 0.5f;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         look_Root = transform.GetChild(0);
         speed = normalSpeed;
+
+        footsteps = GetComponentInChildren<PlayerFootsteps>();
+    }
+
+    private void Start()
+    {
+        setFoorstepAudio("walking");
     }
 
     // Update is called once per frame
@@ -53,12 +66,16 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
             look_Root.localPosition = new Vector3(0f, stand_Height, 0f);
             speed = sprintSpeed;
+
+            setFoorstepAudio("sprint");
         }
 
         else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             speed = normalSpeed;
+            setFoorstepAudio("walking");
+        }
     }
-
 
     void Crouch()
     {
@@ -70,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
                 speed = normalSpeed;
 
                 isCrouching = false;
+                setFoorstepAudio("crouch");
             }
             else
             {
@@ -77,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 speed = crouchSpeed;
 
                 isCrouching = true;
+                setFoorstepAudio("walking");
             }
         }
     }
@@ -94,5 +113,29 @@ public class PlayerMovement : MonoBehaviour
         if (characterController.isGrounded &&
             Input.GetKeyDown(KeyCode.Space))
             verticalSpeed = jumpForce;
+    }
+
+    private void setFoorstepAudio(string style)
+    {
+        if (style == "walking")
+        {
+            footsteps.volumeMin = walkVolumeMin;
+            footsteps.volumeMax = walkVolumeMax;
+            footsteps.stepDistance = walkStepDistance;
+        }
+
+        else if (style == "sprint")
+        {
+            footsteps.volumeMin = sprintVolume;
+            footsteps.volumeMax = sprintVolume;
+            footsteps.stepDistance = sprintStepDistance;
+        }
+
+        else if (style == "crouch")
+        {
+            footsteps.volumeMin = crouchVolume;
+            footsteps.volumeMax = crouchVolume;
+            footsteps.stepDistance = crouchStepDistance;
+        }
     }
 }
