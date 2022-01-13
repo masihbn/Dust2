@@ -37,4 +37,10 @@ public class Tags : MonoBehaviour
         SINGLE,
         MULTIPLE
     }
+
+    public enum SceneIndex
+    {
+        MAIN_MENU = 0,
+        GAME_SCENE = 1
+    }
 }
