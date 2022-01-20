@@ -1,141 +1,74 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Tags;
+
+[RequireComponent(typeof(CharacterController))]
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Transform look_Root;
+    public float walkingSpeed = 14.5f;
+    public float runningSpeed = 19.5f;
+    public float jumpSpeed = 10.0f;
+    public float gravity = 20.0f;
+    public Camera playerCamera;
+    public float lookSpeed = 2.0f;
+    public float lookXLimit = 45.0f;
+
     CharacterController characterController;
-    Vector3 moveDirection;
+    Vector3 moveDirection = Vector3.zero;
+    float rotationX = 0;
 
-    public float speed, normalSpeed = 5f, sprintSpeed = 10f, crouchSpeed = 2f
-        , jumpForce = 10f;
-    private float verticalSpeed, gravity = 20f;
+    [HideInInspector]
+    public bool canMove = true;
 
-    private float stand_Height = 0f;
-    private float crouch_Height = -0.6f;
-
-    private bool isCrouching;
-
-    // Walking audio
-    private PlayerFootsteps footsteps;
-    private float sprintVolume = 1f, crouchVolume = 0.1f,
-        walkVolumeMin = 0.2f, walkVolumeMax = 0.6f;
-    private float walkStepDistance = 0.4f, sprintStepDistance = 0.25f, crouchStepDistance = 0.5f;
-
-    private void Awake()
+    void Start()
     {
         characterController = GetComponent<CharacterController>();
-        look_Root = transform.GetChild(0);
-        speed = normalSpeed;
 
-        footsteps = GetComponentInChildren<PlayerFootsteps>();
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Start()
-    {
-        setFoorstepAudio("walking");
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        PlayerMove();
-    }
+        // We are grounded, so recalculate move direction based on axes
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+        // Press Left Shift to run
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float movementDirectionY = moveDirection.y;
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-    void PlayerMove()
-    {
-        Sprint();
-        Crouch();
-
-        moveDirection = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f, Input.GetAxis(Axis.VERTICAL));
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= speed * Time.deltaTime;
-
-        ApplyGravity();
-
-        characterController.Move(moveDirection);
-    }
-
-    private void Sprint()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
-            isCrouching = false;
-            look_Root.localPosition = new Vector3(0f, stand_Height, 0f);
-            speed = sprintSpeed;
-
-            setFoorstepAudio("sprint");
+            moveDirection.y = jumpSpeed;
+        }
+        else
+        {
+            moveDirection.y = movementDirectionY;
         }
 
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+        // as an acceleration (ms^-2)
+        if (!characterController.isGrounded)
         {
-            speed = normalSpeed;
-            setFoorstepAudio("walking");
-        }
-    }
-
-    void Crouch()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (isCrouching)
-            {
-                look_Root.localPosition = new Vector3(0f, stand_Height, 0f);
-                speed = normalSpeed;
-
-                isCrouching = false;
-                setFoorstepAudio("crouch");
-            }
-            else
-            {
-                look_Root.localPosition = new Vector3(0f, crouch_Height, 0f);
-                speed = crouchSpeed;
-
-                isCrouching = true;
-                setFoorstepAudio("walking");
-            }
-        }
-    }
-
-    private void ApplyGravity()
-    {
-        verticalSpeed -= gravity * Time.deltaTime;
-        PlayerJump();
-
-        moveDirection.y = verticalSpeed * Time.deltaTime;
-    }
-
-    private void PlayerJump()
-    {
-        if (characterController.isGrounded &&
-            Input.GetKeyDown(KeyCode.Space))
-            verticalSpeed = jumpForce;
-    }
-
-    private void setFoorstepAudio(string style)
-    {
-        if (style == "walking")
-        {
-            footsteps.volumeMin = walkVolumeMin;
-            footsteps.volumeMax = walkVolumeMax;
-            footsteps.stepDistance = walkStepDistance;
+            moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        else if (style == "sprint")
-        {
-            footsteps.volumeMin = sprintVolume;
-            footsteps.volumeMax = sprintVolume;
-            footsteps.stepDistance = sprintStepDistance;
-        }
+        // Move the controller
+        characterController.Move(moveDirection * Time.deltaTime);
 
-        else if (style == "crouch")
+        // Player and Camera rotation
+        if (canMove)
         {
-            footsteps.volumeMin = crouchVolume;
-            footsteps.volumeMax = crouchVolume;
-            footsteps.stepDistance = crouchStepDistance;
+            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
 }
