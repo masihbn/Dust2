@@ -11,16 +11,18 @@ public class PlayerStats : MonoBehaviour {
     public void Display_HealthStats(float healthValue) {
 
         healthValue /= 100f;
-
+        if(health_Stats)
         health_Stats.fillAmount = healthValue;
+            else Debug.LogWarning("Health States not found");
 
     }
 
     public void Display_StaminaStats(float staminaValue) {
 
         staminaValue /= 100f;
-
+        if(stamina_Stats)
         stamina_Stats.fillAmount = staminaValue;
+            else Debug.LogWarning("stamina States not found");
 
     }
 

@@ -239,6 +239,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2719756691824058755, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0826
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719756691824058755, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0239
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125860201734348908, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: gravity
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125860201734348908, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: runningSpeed
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125860201734348908, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
+      propertyPath: walkingSpeed
+      value: 16.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
 --- !u!1 &434778554
@@ -422,6 +442,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2719756691328840489, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
   m_PrefabInstance: {fileID: 251216572}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1501648021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501648020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7045e952e7f4da2ad09ed54894b43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health_Stats: {fileID: 0}
+  stamina_Stats: {fileID: 0}
+--- !u!114 &1501648022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501648020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdf74b4979bf4df4bc29c87f999d02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprint_Speed: 10
+  move_Speed: 5
+  crouch_Speed: 2
+  sprint_Treshold: 10
 --- !u!1 &1655178072
 GameObject:
   m_ObjectHideFlags: 0
