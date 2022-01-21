@@ -43,9 +43,9 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
 
 	}
     void Start() {
-        player_Footsteps.volume_Min = walk_Volume_Min;
-        player_Footsteps.volume_Max = walk_Volume_Max;
-        player_Footsteps.step_Distance = walk_Step_Distance;
+        player_Footsteps.volumeMin = walk_Volume_Min;
+        player_Footsteps.volumeMax = walk_Volume_Max;
+        player_Footsteps.stepDistance = walk_Step_Distance;
     }
 
     // Update is called once per frame
@@ -61,11 +61,11 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching) {
 
-                playerMovement.speed = sprint_Speed;
+                playerMovement.runningSpeed = sprint_Speed;
 
-                player_Footsteps.step_Distance = sprint_Step_Distance;
-                player_Footsteps.volume_Min = sprint_Volume;
-                player_Footsteps.volume_Max = sprint_Volume;
+                player_Footsteps.stepDistance = sprint_Step_Distance;
+                player_Footsteps.volumeMin = sprint_Volume;
+                player_Footsteps.volumeMax = sprint_Volume;
 
             }
 
@@ -73,11 +73,11 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
 
         if(Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching) {
 
-            playerMovement.speed = move_Speed;
+            playerMovement.runningSpeed = move_Speed;
 
-            player_Footsteps.step_Distance = walk_Step_Distance;
-            player_Footsteps.volume_Min = walk_Volume_Min;
-            player_Footsteps.volume_Max = walk_Volume_Max;
+            player_Footsteps.stepDistance = walk_Step_Distance;
+            player_Footsteps.volumeMin = walk_Volume_Min;
+            player_Footsteps.volumeMax = walk_Volume_Max;
 
         }
 
@@ -90,10 +90,10 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
                 sprint_Value = 0f;
 
                 // reset the speed and sound
-                playerMovement.speed = move_Speed;
-                player_Footsteps.step_Distance = walk_Step_Distance;
-                player_Footsteps.volume_Min = walk_Volume_Min;
-                player_Footsteps.volume_Max = walk_Volume_Max;
+                playerMovement.walkingSpeed = move_Speed;
+                player_Footsteps.stepDistance = walk_Step_Distance;
+                player_Footsteps.volumeMin = walk_Volume_Min;
+                player_Footsteps.volumeMax = walk_Volume_Max;
 
 
             }
@@ -127,11 +127,11 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
             if(is_Crouching) {
 
                 look_Root.localPosition = new Vector3(0f, stand_Height, 0f);
-                playerMovement.speed = move_Speed;
+                playerMovement.walkingSpeed = move_Speed;
 
-                player_Footsteps.step_Distance = walk_Step_Distance;
-                player_Footsteps.volume_Min = walk_Volume_Min;
-                player_Footsteps.volume_Max = walk_Volume_Max;
+                player_Footsteps.stepDistance = walk_Step_Distance;
+                player_Footsteps.volumeMin = walk_Volume_Min;
+                player_Footsteps.volumeMax = walk_Volume_Max;
 
                 is_Crouching = false;
 
@@ -139,11 +139,11 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
                 // if we are not crouching - crouch
 
                 look_Root.localPosition = new Vector3(0f, crouch_Height, 0f);
-                playerMovement.speed = crouch_Speed;
+                playerMovement.walkingSpeed = crouch_Speed;
 
-                player_Footsteps.step_Distance = crouch_Step_Distance;
-                player_Footsteps.volume_Min = crouch_Volume;
-                player_Footsteps.volume_Max = crouch_Volume;
+                player_Footsteps.stepDistance = crouch_Step_Distance;
+                player_Footsteps.volumeMin = crouch_Volume;
+                player_Footsteps.volumeMax = crouch_Volume;
 
                 is_Crouching = true;
 

@@ -21,8 +21,7 @@ public class AttackScript : MonoBehaviour {
         }
 
 	}
-
-} // class
+}
 
 
 

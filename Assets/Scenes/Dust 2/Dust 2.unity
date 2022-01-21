@@ -587,7 +587,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 189652335, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: da9c438450e3c6549bae97e2ca7f2c78, type: 3}
 --- !u!1 &434778554
 GameObject:
@@ -944,6 +945,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d5b5edd29a5432c9dbe255eb97df60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
+  radius: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &3006434019856119682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -952,9 +958,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 353726336, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
-      propertyPath: m_WalkableMask
-      value: 5
+      propertyPath: m_Speed
+      value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 353726336, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 353726336, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 353726336, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 353726336, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: m_WalkableMask
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 353726339, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: attack_Clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e3f80a79de15f94faa878cb5d3af786, type: 3}
     - target: {fileID: 2700354509321225785, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
       propertyPath: m_Name
       value: GermanWW2Soldier
@@ -1008,8 +1034,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: run_Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
       propertyPath: attack_Point
       value: 
       objectReference: {fileID: 1501648020}
+    - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: chase_Distance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: attack_Distance
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: patrol_Radius_Max
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732498716161935066, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+      propertyPath: patrol_Radius_Min
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}

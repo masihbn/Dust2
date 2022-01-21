@@ -37,8 +37,6 @@ public class EnemyController : MonoBehaviour {
 
     private EnemyAudio enemy_Audio;
 
-    public Tags chase;
-
     void Awake() {
         enemy_Anim = GetComponent<EnemyAnimator>();
         navAgent = GetComponent<NavMeshAgent>();
