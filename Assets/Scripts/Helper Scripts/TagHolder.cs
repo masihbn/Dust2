@@ -28,7 +28,7 @@ public class AnimationTags {
 
 }
 
-public class myTags {
+public class _Tags {
 
     public const string LOOK_ROOT = "Look Root";
     public const string ZOOM_CAMERA = "FP Camera";
