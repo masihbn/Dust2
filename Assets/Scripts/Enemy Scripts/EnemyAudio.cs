@@ -18,8 +18,10 @@ public class EnemyAudio : MonoBehaviour {
 	}
 
     public void Play_ScreamSound() {
-        audioSource.clip = scream_Clip;
-        audioSource.Play();
+        if(audioSource.isActiveAndEnabled) {
+            audioSource.clip = scream_Clip;
+            audioSource.Play();
+        } else Debug.Log("No Enemy Audio source");
     }
 
     public void Play_AttackSound() {
