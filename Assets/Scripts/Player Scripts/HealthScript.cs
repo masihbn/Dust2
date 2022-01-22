@@ -11,7 +11,7 @@ public class HealthScript : MonoBehaviour {
 
     public float health = 100f;
 
-    public bool is_Player, is_Boar, is_Cannibal;
+    public bool is_Player, is_Soldier, is_Cannibal;
 
     private bool is_Dead;
 
@@ -21,7 +21,7 @@ public class HealthScript : MonoBehaviour {
 
 	void Awake () {
 	    
-        if(is_Boar || is_Cannibal) {
+        if(is_Soldier || is_Cannibal) {
             enemy_Anim = GetComponent<EnemyAnimator>();
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
@@ -49,7 +49,7 @@ public class HealthScript : MonoBehaviour {
             player_Stats.Display_HealthStats(health);
         }
 
-        if(is_Boar || is_Cannibal) {
+        if(is_Soldier || is_Cannibal) {
             if(enemy_Controller.Enemy_State == EnemyState.PATROL) {
                 enemy_Controller.chase_Distance = 50f;
             }
@@ -82,11 +82,15 @@ public class HealthScript : MonoBehaviour {
             EnemyManager.instance.EnemyDied(true);
         }
 
-        if(is_Boar) {
+        if(is_Soldier) {
 
-            navAgent.velocity = Vector3.zero;
-            navAgent.isStopped = true;
+            GetComponent<Animator>().enabled = false;
+            GetComponent<BoxCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().AddTorque(-transform.forward * 5f);
+
             enemy_Controller.enabled = false;
+            navAgent.enabled = false;
+            enemy_Anim.enabled = false;
 
             enemy_Anim.Dead();
 

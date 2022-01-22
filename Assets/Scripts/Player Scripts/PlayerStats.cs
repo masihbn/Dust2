@@ -11,8 +11,10 @@ public class PlayerStats : MonoBehaviour {
     public void Display_HealthStats(float healthValue) {
 
         healthValue /= 100f;
-        if(health_Stats)
-        health_Stats.value = healthValue;
+        if(health_Stats.maxValue <= 100f) {
+            health_Stats.value = healthValue;
+            Debug.LogWarning("Health damage "+healthValue);
+        }
             else Debug.LogWarning("Health States not found");
 
     }
@@ -20,8 +22,10 @@ public class PlayerStats : MonoBehaviour {
     public void Display_StaminaStats(float staminaValue) {
 
         staminaValue /= 100f;
-        if(stamina_Stats)
-        stamina_Stats.value = staminaValue;
+        if(stamina_Stats.maxValue <= 100f) {
+            stamina_Stats.value = staminaValue;
+            Debug.LogWarning("Stamina loss "+staminaValue);
+        }
             else Debug.LogWarning("stamina States not found");
 
     }
