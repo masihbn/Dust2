@@ -82,8 +82,8 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Patrol() {
-
         // tell nav agent that he can move
+        if (navAgent) {
         navAgent.isStopped = false;
         navAgent.speed = walk_Speed;
 
@@ -95,6 +95,7 @@ public class EnemyController : MonoBehaviour {
             SetNewRandomDestination();
 
             patrol_Timer = 0f;
+        } else Debug.Log("Nav agent not accesible");
 
         }
 
@@ -216,8 +217,8 @@ public class EnemyController : MonoBehaviour {
         NavMeshHit navHit;
 
         NavMesh.SamplePosition(randDir, out navHit, rand_Radius, -1);
-
-        navAgent.SetDestination(navHit.position);
+        if(navAgent.SetDestination(navHit.position)) Debug.Log("navAgent is good!");
+        else Debug.Log("navAgent not working!");
 
     }
 
