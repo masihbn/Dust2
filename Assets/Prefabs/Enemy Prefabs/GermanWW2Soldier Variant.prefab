@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  radius: 1
+  radius: 10
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
 --- !u!54 &5931214580199732193
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   is_Player: 0
-  is_Soldier: 0
+  is_Soldier: 1
   is_Cannibal: 0
 --- !u!195 &353726336
 NavMeshAgent:
@@ -273,7 +273,7 @@ MonoBehaviour:
   walk_Speed: 5
   run_Speed: 8
   chase_Distance: 20
-  attack_Distance: 5
+  attack_Distance: 10
   chase_After_Attack_Distance: 2
   patrol_Radius_Min: 20
   patrol_Radius_Max: 60

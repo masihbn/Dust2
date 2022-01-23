@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   is_Player: 0
-  is_Soldier: 0
+  is_Soldier: 1
   is_Cannibal: 0
 --- !u!82 &1125929402081779622
 AudioSource:
@@ -1312,11 +1312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ebb886dfe9bdc45a65bc01f35d3a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 5
   radius: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!1 &1794471181213470
 GameObject:
   m_ObjectHideFlags: 0

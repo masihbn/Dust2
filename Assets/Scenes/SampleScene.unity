@@ -880,6 +880,10 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114401672018666808, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
+      propertyPath: is_Player
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114719338500143484, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
       propertyPath: shootSound
       value: 
