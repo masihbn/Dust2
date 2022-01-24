@@ -109,7 +109,7 @@ public class PlayerAttack : MonoBehaviour
             if (hit.transform.tag == Tags.CharacterTag.ENEMY_TAG)
             {
                 Debug.Log("hit enemy");
-                hit.transform.GetComponent<HealthScript>().ApplyDamage();
+                hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
             }
         }
     } // bullet fired

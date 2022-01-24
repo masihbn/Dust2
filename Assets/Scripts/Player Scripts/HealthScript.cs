@@ -45,11 +45,8 @@ public class HealthScript : MonoBehaviour {
 
     }
 
-    public void ApplyDamage() {
-        //Debug.Log($"Getting damage {is_Player}");
-        float damage = 2;
-        // if we died don't execute the rest of the code
-        Debug.Log($"is dead {is_Dead}, health {health}");
+    public void ApplyDamage(float damage) {
+        
         if (health <= 0)
             return;
 
@@ -61,6 +58,7 @@ public class HealthScript : MonoBehaviour {
             //player_Stats.Display_HealthStats(health);
             Debug.Log($"health: {health} damage: {damage}");
             health -= damage;
+            gameObject.GetComponent<PlayerStatsUpdate>().Display_HealthStats(health);
         }
 
         if(is_Soldier || is_Cannibal) {
@@ -120,17 +118,18 @@ public class HealthScript : MonoBehaviour {
 
         if(is_Player) {
 
-            //GameObject[] enemies = GameObject.FindGameObjectsWithTag(_Tags.ENEMY_TAG);
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(_Tags.ENEMY_TAG);
 
-            //for (int i = 0; i < enemies.Length; i++) {
-            //    enemies[i].GetComponent<EnemyController>().enabled = false;
-            //}
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].GetComponent<EnemyController>().enabled = false;
+            }
 
-            //// call enemy manager to stop spawning enemies
-            //EnemyManager.instance.StopSpawning();
+            // call enemy manager to stop spawning enemies
+            EnemyManager.instance.StopSpawning();
 
-            //GetComponent<PlayerMovement>().enabled = false;
-            //GetComponent<PlayerAttack>().enabled = false;
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<PlayerAttack>().enabled = false;
             //GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
             Debug.Log("Player Died");
             //SceneManager.LoadScene(2);

@@ -160,7 +160,6 @@ public class EnemyController : MonoBehaviour {
 
     void Attack() {
         transform.LookAt(mainPlayer.transform.position);
-        Debug.Log(mainPlayer.transform.position);
 
         navAgent.velocity = Vector3.zero;
         navAgent.isStopped = true;
@@ -170,7 +169,7 @@ public class EnemyController : MonoBehaviour {
         if(attack_Timer > wait_Before_Attack) {
             //Debug.Log($"Attacking, player health: {mainPlayer.GetComponent<HealthScript>().health} enemy damage: {enemyDamage}");
             Debug.Log("Applying damage");
-            mainPlayer.GetComponent<HealthScript>().ApplyDamage();
+            mainPlayer.GetComponent<HealthScript>().ApplyDamage(enemyDamage);
 
             enemy_Anim.Attack();
 
