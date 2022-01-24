@@ -96,6 +96,7 @@ public class HealthScript : MonoBehaviour {
             GetComponent<PlayerAttack>().enabled = false;
             //GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
             Debug.Log("Player Died");
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene((int)SceneIndex.MAIN_MENU);
         }
 

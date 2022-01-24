@@ -6,7 +6,7 @@ using static Tags;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Start()
+    private void Update()
     {
         Cursor.lockState = CursorLockMode.None;
     }
