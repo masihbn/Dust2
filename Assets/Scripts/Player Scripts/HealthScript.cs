@@ -12,7 +12,7 @@ public class HealthScript : MonoBehaviour {
 
     public float health = 100f;
 
-    public bool is_Player, is_Soldier, is_Cannibal;
+    public bool is_Player, is_Soldier;
 
     private bool is_Dead;
 
@@ -20,7 +20,7 @@ public class HealthScript : MonoBehaviour {
 
 	void Awake () {
         
-        if(is_Soldier || is_Cannibal) {
+        if(is_Soldier) {
             enemy_Anim = GetComponent<EnemyAnimator>();
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
@@ -48,7 +48,7 @@ public class HealthScript : MonoBehaviour {
             gameObject.GetComponent<PlayerStatsUpdate>().Display_HealthStats(health);
         }
 
-        if(is_Soldier || is_Cannibal) {
+        if(is_Soldier) {
             if(enemy_Controller.Enemy_State == EnemyState.PATROL) {
                 enemy_Controller.chase_Distance = 50f;
             }
@@ -68,28 +68,11 @@ public class HealthScript : MonoBehaviour {
     } // apply damage
 
     void PlayerDied() {
-
-        if(is_Cannibal) {
-
-            GetComponent<Animator>().enabled = false;
-            GetComponent<BoxCollider>().isTrigger = false;
-            GetComponent<Rigidbody>().AddTorque(-transform.forward * 5f);
-
-            enemy_Controller.enabled = false;
-            navAgent.enabled = false;
-            enemy_Anim.enabled = false;
-
-            StartCoroutine(DeadSound());
-
-            // EnemyManager spawn more enemies
-            EnemyManager.instance.EnemyDied(true);
-        }
-
         if(is_Soldier) {
 
             GetComponent<Animator>().enabled = false;
             GetComponent<BoxCollider>().isTrigger = false;
-            GetComponent<Rigidbody>().AddTorque(-transform.forward * 5f);
+            GetComponent<Rigidbody>().AddTorque(-transform.forward * 15f);
 
             enemy_Controller.enabled = false;
             navAgent.enabled = false;
@@ -98,9 +81,6 @@ public class HealthScript : MonoBehaviour {
             enemy_Anim.Dead();
 
             StartCoroutine(DeadSound());
-
-            // EnemyManager spawn more enemies
-            EnemyManager.instance.EnemyDied(false);
         }
 
         if(is_Player) {
@@ -112,9 +92,6 @@ public class HealthScript : MonoBehaviour {
                 enemies[i].GetComponent<EnemyController>().enabled = false;
             }
 
-            // call enemy manager to stop spawning enemies
-            EnemyManager.instance.StopSpawning();
-
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             //GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
@@ -124,7 +101,6 @@ public class HealthScript : MonoBehaviour {
 
         if(tag == _Tags.PLAYER_TAG) {
 
-            // Invoke("RestartGame", 3f);
             Debug.Log("Player Died");
             SceneManager.LoadScene(2);
 

@@ -71,11 +71,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
         {
-            Debug.Log(hit.transform.name);
-
             if (hit.transform.tag == CharacterTag.ENEMY_TAG)
             {
-                Debug.Log("hit enemy");
                 hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
             }
         }

@@ -752,11 +752,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4331500397158274, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.4
+      value: 11.92
       objectReference: {fileID: 0}
     - target: {fileID: 4331500397158274, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.7
+      value: 141.16
       objectReference: {fileID: 0}
     - target: {fileID: 4331500397158274, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1053,16 +1053,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6a154c7aec45a0b0ef0a97db2acb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannibal_Prefab: {fileID: 2700354509321225785, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
-  cannibal_SpawnPoints:
+  enemyPrefab: {fileID: 2700354509321225785, guid: f341a0f63a642b74a95a8ec792b7da7c, type: 3}
+  enemySpawnPoints:
   - {fileID: 2018235267}
   - {fileID: 419533829}
   - {fileID: 2022071681}
   - {fileID: 2004970841}
   - {fileID: 1284880346}
   - {fileID: 2036535461}
-  cannibal_Enemy_Count: 1
-  wait_Before_Spawn_Enemies_Time: 20
+  enemyCount: 6
 --- !u!1 &1415798548
 GameObject:
   m_ObjectHideFlags: 0
