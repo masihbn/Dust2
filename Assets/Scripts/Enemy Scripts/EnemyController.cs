@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
     public float patrol_For_This_Time = 15f;
     private float patrol_Timer;
 
-    public float wait_Before_Attack = 2f;
+    public float wait_Before_Attack = 0.5f;
     private float attack_Timer;
 
     private Transform target;
@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour {
     private EnemyAudio enemy_Audio;
 
     void Awake() {
+        mainPlayer = GameObject.Find("Player");
         enemy_Anim = GetComponent<EnemyAnimator>();
         navAgent = GetComponent<NavMeshAgent>();
 
@@ -57,11 +58,9 @@ public class EnemyController : MonoBehaviour {
         attack_Timer = wait_Before_Attack;
 
         current_Chase_Distance = chase_Distance;
-
 	}
 	
 	void Update () {
-		
         if(enemy_State == EnemyState.PATROL) {
             Patrol();
         }
@@ -73,7 +72,6 @@ public class EnemyController : MonoBehaviour {
         if (enemy_State == EnemyState.ATTACK) {
             Attack();
         }
-
     }
 
     void Patrol() {
@@ -161,6 +159,8 @@ public class EnemyController : MonoBehaviour {
     } 
 
     void Attack() {
+        transform.LookAt(mainPlayer.transform.position);
+        Debug.Log(mainPlayer.transform.position);
 
         navAgent.velocity = Vector3.zero;
         navAgent.isStopped = true;
@@ -168,25 +168,22 @@ public class EnemyController : MonoBehaviour {
         attack_Timer += Time.deltaTime;
 
         if(attack_Timer > wait_Before_Attack) {
+            //Debug.Log($"Attacking, player health: {mainPlayer.GetComponent<HealthScript>().health} enemy damage: {enemyDamage}");
+            Debug.Log("Applying damage");
+            mainPlayer.GetComponent<HealthScript>().ApplyDamage();
 
             enemy_Anim.Attack();
 
             attack_Timer = 0f;
 
             enemy_Audio.Play_AttackSound();
-
-            var playerHealth = mainPlayer.GetComponent<HealthScript>().health;
-            playerHealth -= enemyDamage;
         }
 
         if(Vector3.Distance(transform.position, target.position) >
            attack_Distance + chase_After_Attack_Distance) {
 
             enemy_State = EnemyState.CHASE;
-
         }
-
-
     } 
 
     void SetNewRandomDestination() {

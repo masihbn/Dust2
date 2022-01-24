@@ -99,15 +99,17 @@ public class PlayerAttack : MonoBehaviour
     {
         Debug.Log("Bullet fired");
         RaycastHit hit;
-
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
         {
-            Debug.Log("Don't know what's going on" + hit.transform.name);
+            Debug.Log(hit.transform.name + "  maincam: " + mainCam.transform.position + 
+                "   obJ :" + hit.transform.position);
+
+            Debug.DrawLine(mainCam.transform.position, hit.transform.position, Color.red);
 
             if (hit.transform.tag == Tags.CharacterTag.ENEMY_TAG)
             {
                 Debug.Log("hit enemy");
-                hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
+                hit.transform.GetComponent<HealthScript>().ApplyDamage();
             }
         }
     } // bullet fired

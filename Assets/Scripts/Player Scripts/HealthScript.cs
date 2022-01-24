@@ -21,7 +21,7 @@ public class HealthScript : MonoBehaviour {
     private PlayerStats player_Stats;
 
 	void Awake () {
-	    
+        
         if(is_Soldier || is_Cannibal) {
             enemy_Anim = GetComponent<EnemyAnimator>();
             enemy_Controller = GetComponent<EnemyController>();
@@ -32,22 +32,35 @@ public class HealthScript : MonoBehaviour {
         }
 
         if(is_Player) {
+            Debug.Log(health);
             player_Stats = GetComponent<PlayerStats>();
         }
 
 	}
-	
-    public void ApplyDamage(float damage) {
 
+    private void Start()
+    {
+        is_Dead = false;
+        health = 100f;
+
+    }
+
+    public void ApplyDamage() {
+        //Debug.Log($"Getting damage {is_Player}");
+        float damage = 2;
         // if we died don't execute the rest of the code
-        if (is_Dead)
+        Debug.Log($"is dead {is_Dead}, health {health}");
+        if (health <= 0)
             return;
 
         health -= damage;
 
+        Debug.Log($"Getting damage {is_Player}");
         if(is_Player) {
             // show the stats(display the health UI value)
             //player_Stats.Display_HealthStats(health);
+            Debug.Log($"health: {health} damage: {damage}");
+            health -= damage;
         }
 
         if(is_Soldier || is_Cannibal) {
@@ -107,20 +120,20 @@ public class HealthScript : MonoBehaviour {
 
         if(is_Player) {
 
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(_Tags.ENEMY_TAG);
+            //GameObject[] enemies = GameObject.FindGameObjectsWithTag(_Tags.ENEMY_TAG);
 
-            for (int i = 0; i < enemies.Length; i++) {
-                enemies[i].GetComponent<EnemyController>().enabled = false;
-            }
+            //for (int i = 0; i < enemies.Length; i++) {
+            //    enemies[i].GetComponent<EnemyController>().enabled = false;
+            //}
 
-            // call enemy manager to stop spawning enemies
-            EnemyManager.instance.StopSpawning();
+            //// call enemy manager to stop spawning enemies
+            //EnemyManager.instance.StopSpawning();
 
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponent<PlayerAttack>().enabled = false;
-            GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
+            //GetComponent<PlayerMovement>().enabled = false;
+            //GetComponent<PlayerAttack>().enabled = false;
+            //GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
             Debug.Log("Player Died");
-            SceneManager.LoadScene(2);
+            //SceneManager.LoadScene(2);
         }
 
         if(tag == _Tags.PLAYER_TAG) {
