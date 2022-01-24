@@ -167,15 +167,13 @@ public class EnemyController : MonoBehaviour {
         attack_Timer += Time.deltaTime;
 
         if(attack_Timer > wait_Before_Attack) {
-            //Debug.Log($"Attacking, player health: {mainPlayer.GetComponent<HealthScript>().health} enemy damage: {enemyDamage}");
-            Debug.Log("Applying damage");
             mainPlayer.GetComponent<HealthScript>().ApplyDamage(enemyDamage);
 
             enemy_Anim.Attack();
 
             attack_Timer = 0f;
 
-            enemy_Audio.Play_AttackSound();
+            //enemy_Audio.Play_AttackSound();
         }
 
         if(Vector3.Distance(transform.position, target.position) >

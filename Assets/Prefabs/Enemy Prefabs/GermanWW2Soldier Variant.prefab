@@ -72,11 +72,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2700354509321225785}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43737984, y: 1.785523, z: 0.21}
-  m_Center: {x: 0.0024404526, y: 0.8977615, z: 0}
+  m_Size: {x: 1.0898846, y: 2.311936, z: 0.8249034}
+  m_Center: {x: -0.08772143, y: 0.7919962, z: -0.017860651}
 --- !u!82 &2223060572018722205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.191
+  m_Volume: 0.077
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -97,7 +97,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.3018222
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

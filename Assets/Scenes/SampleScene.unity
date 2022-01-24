@@ -186,7 +186,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99673468}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   - {fileID: 2004970841}
   - {fileID: 1284880346}
   - {fileID: 2036535461}
-  cannibal_Enemy_Count: 6
+  cannibal_Enemy_Count: 1
   wait_Before_Spawn_Enemies_Time: 20
 --- !u!1 &1415798548
 GameObject:

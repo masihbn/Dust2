@@ -14,33 +14,13 @@ public class PlayerAttack : MonoBehaviour
     private float nextTimeToFire;
     public float damage = 20f;
 
-    private Animator zoomCameraAnim;
-    private bool zoomed;
-
     private Camera mainCam;
-
-    private GameObject crosshair;
-
-    private bool is_Aiming;
-
-    [SerializeField]
-    private GameObject arrow_Prefab, spear_Prefab;
-
-    [SerializeField]
-    private Transform arrow_Bow_StartPosition;
 
     void Awake()
     {
-
         weapon_Manager = GetComponent<WeaponManager>();
 
         mainCam = Camera.main;
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -51,42 +31,32 @@ public class PlayerAttack : MonoBehaviour
 
     void WeaponShoot()
     {
-
         // if we have assault riffle
         if (weapon_Manager.GetCurrentSelectedWeapon().fireType == WeaponFireType.MULTIPLE)
         {
-
             // if we press and hold left mouse click AND
             // if Time is greater than the nextTimeToFire
             if (Input.GetMouseButton(0) && Time.time > nextTimeToFire)
             {
-
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
                 StartCoroutine(ExampleCoroutine());
 
                 BulletFired();
-
             }
-
-
-            // if we have a regular weapon that shoots once
         }
+
         else
         {
-
             if (Input.GetMouseButtonDown(0))
             {
-                // handle shoot
                 if (weapon_Manager.GetCurrentSelectedWeapon().bulletType == WeaponBulletType.BULLET)
                 {
-
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
                     StartCoroutine(ExampleCoroutine());
 
                     BulletFired();
-
                 }
 
             } // if input get mouse button 0
@@ -97,16 +67,13 @@ public class PlayerAttack : MonoBehaviour
 
     void BulletFired()
     {
-        Debug.Log("Bullet fired");
         RaycastHit hit;
+
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
         {
-            Debug.Log(hit.transform.name + "  maincam: " + mainCam.transform.position + 
-                "   obJ :" + hit.transform.position);
+            Debug.Log(hit.transform.name);
 
-            Debug.DrawLine(mainCam.transform.position, hit.transform.position, Color.red);
-
-            if (hit.transform.tag == Tags.CharacterTag.ENEMY_TAG)
+            if (hit.transform.tag == CharacterTag.ENEMY_TAG)
             {
                 Debug.Log("hit enemy");
                 hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);

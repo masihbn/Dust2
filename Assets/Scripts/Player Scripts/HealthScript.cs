@@ -18,8 +18,6 @@ public class HealthScript : MonoBehaviour {
 
     private EnemyAudio enemyAudio;
 
-    private PlayerStats player_Stats;
-
 	void Awake () {
         
         if(is_Soldier || is_Cannibal) {
@@ -30,12 +28,6 @@ public class HealthScript : MonoBehaviour {
             // get enemy audio
             enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
-
-        if(is_Player) {
-            Debug.Log(health);
-            player_Stats = GetComponent<PlayerStats>();
-        }
-
 	}
 
     private void Start()
@@ -47,17 +39,12 @@ public class HealthScript : MonoBehaviour {
 
     public void ApplyDamage(float damage) {
         
-        if (health <= 0)
+        if (is_Dead)
             return;
 
-        health -= damage;
+        //health -= damage;
 
-        Debug.Log($"Getting damage {is_Player}");
         if(is_Player) {
-            // show the stats(display the health UI value)
-            //player_Stats.Display_HealthStats(health);
-            Debug.Log($"health: {health} damage: {damage}");
-            health -= damage;
             gameObject.GetComponent<PlayerStatsUpdate>().Display_HealthStats(health);
         }
 

@@ -16729,9 +16729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 15
   damage: 20
-  arrow_Prefab: {fileID: 0}
-  spear_Prefab: {fileID: 0}
-  arrow_Bow_StartPosition: {fileID: 0}
 --- !u!114 &114401672018666808
 MonoBehaviour:
   m_ObjectHideFlags: 0
