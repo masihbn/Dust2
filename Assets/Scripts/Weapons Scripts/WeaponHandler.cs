@@ -50,11 +50,13 @@ public class WeaponHandler : MonoBehaviour {
         anim.SetBool(AnimationTags.AIM_PARAMETER, canAim);
     }
 
-    void Turn_On_MuzzleFlash() {
+    public void Turn_On_MuzzleFlash()
+    {
         muzzleFlash.SetActive(true);
     }
 
-    void Turn_Off_MuzzleFlash() {
+    public void Turn_Off_MuzzleFlash()
+    {
         muzzleFlash.SetActive(false);
     }
 

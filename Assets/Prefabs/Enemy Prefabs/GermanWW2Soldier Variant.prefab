@@ -270,7 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e58afc04069f4f44b774f272dc37f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainPlayer: {fileID: 1535745819391134, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
   walk_Speed: 5
+  enemyDamage: 10
   run_Speed: 8
   chase_Distance: 20
   attack_Distance: 10

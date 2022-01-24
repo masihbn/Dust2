@@ -28,30 +28,65 @@ public class PlayerFootsteps : MonoBehaviour
 
     void Update()
     {
-        // CheckToPlayFootstepSound();
+        CheckToPlayFootstepSound();
     }
 
-    // void CheckToPlayFootstepSound()
-    // {
-    //     if (!characterController.isGrounded)
-    //         return;
+    void CheckToPlayFootstepSound()
+    {
+
+        // if we are NOT on the ground
+        if (!characterController.isGrounded)
+            return;
 
 
-    //     if (characterController.velocity.sqrMagnitude > 0)
-    //     {
-    //         accumulatedDistance += Time.deltaTime;
+        if (characterController.velocity.sqrMagnitude > 0)
+        {
 
-    //         if (accumulatedDistance > stepDistance)
-    //         {
-    //             footstepSound.volume = Random.Range(volumeMin, volumeMax);
-    //             footstepSound.clip = footstepClip[Random.Range(0, footstepClip.Length)];
-    //             footstepSound.Play();
+            // accumulated distance is the value how far can we go 
+            // e.g. make a step or sprint, or move while crouching
+            // until we play the footstep sound
+            accumulatedDistance += Time.deltaTime;
 
-    //             accumulatedDistance = 0f;
-    //         }
+            if (accumulatedDistance > stepDistance)
+            {
 
-    //     }
-    //     else
-    //         accumulatedDistance = 0f;
-    // }
+                footstepSound.volume = Random.Range(volumeMin, volumeMax);
+                footstepSound.clip = footstepClip[Random.Range(0, footstepClip.Length)];
+                footstepSound.Play();
+
+                accumulatedDistance = 0f;
+
+            }
+
+        }
+        else
+        {
+            accumulatedDistance = 0f;
+        }
+    }
+
+
+    //void checktoplayfootstepsound()
+    //{
+    //    if (!charactercontroller.isgrounded)
+    //        return;
+
+
+    //    if (charactercontroller.velocity.sqrmagnitude > 0)
+    //    {
+    //        accumulateddistance += time.deltatime;
+
+    //        if (accumulateddistance > stepdistance)
+    //        {
+    //            footstepsound.volume = random.range(volumemin, volumemax);
+    //            footstepsound.clip = footstepclip[random.range(0, footstepclip.length)];
+    //            footstepsound.play();
+
+    //            accumulateddistance = 0f;
+    //        }
+
+    //    }
+    //    else
+    //        accumulateddistance = 0f;
+    //}
 }

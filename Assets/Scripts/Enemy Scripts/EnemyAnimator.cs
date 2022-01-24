@@ -26,7 +26,7 @@ public class EnemyAnimator : MonoBehaviour {
         anim.SetTrigger(AnimationTags.DEAD_TRIGGER);
     }
 
-} // class
+} 
 
 
 

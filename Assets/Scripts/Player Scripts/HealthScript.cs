@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class HealthScript : MonoBehaviour {
 
@@ -56,6 +57,7 @@ public class HealthScript : MonoBehaviour {
         }
 
         if(health <= 0f) {
+            Debug.Log("DEAD");
 
             PlayerDied();
 
@@ -114,14 +116,18 @@ public class HealthScript : MonoBehaviour {
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
-
+            Debug.Log("Player Died");
+            SceneManager.LoadScene(2);
         }
 
         if(tag == _Tags.PLAYER_TAG) {
 
-            Invoke("RestartGame", 3f);
+            // Invoke("RestartGame", 3f);
+            Debug.Log("Player Died");
+            SceneManager.LoadScene(2);
 
-        } else {
+        }
+        else {
 
             Invoke("TurnOffGameObject", 3f);
 

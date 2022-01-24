@@ -10,13 +10,14 @@ public enum EnemyState {
 }
 
 public class EnemyController : MonoBehaviour {
+    public GameObject mainPlayer;
 
     private EnemyAnimator enemy_Anim;
     private NavMeshAgent navAgent;
 
     private EnemyState enemy_State;
 
-    public float walk_Speed = 0.5f;
+    public float walk_Speed = 0.5f, enemyDamage = 10f;
     public float run_Speed = 4f;
 
     public float chase_Distance = 7f;
@@ -47,24 +48,18 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    // Use this for initialization
     void Start () {
 
         enemy_State = EnemyState.PATROL;
 
         patrol_Timer = patrol_For_This_Time;
-
-        // when the enemy first gets to the player
-        // attack right away
+        
         attack_Timer = wait_Before_Attack;
 
-        // memorize the value of chase distance
-        // so that we can put it back
         current_Chase_Distance = chase_Distance;
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
         if(enemy_State == EnemyState.PATROL) {
@@ -82,12 +77,10 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Patrol() {
-        // tell nav agent that he can move
         if (navAgent) {
         navAgent.isStopped = false;
         navAgent.speed = walk_Speed;
 
-        // add to the patrol timer
         patrol_Timer += Time.deltaTime;
 
         if(patrol_Timer > patrol_For_This_Time) {
@@ -95,7 +88,9 @@ public class EnemyController : MonoBehaviour {
             SetNewRandomDestination();
 
             patrol_Timer = 0f;
-        } else Debug.Log("Nav agent not accesible");
+        } else 
+                //Debug.Log("Nav agent not accesible")
+                    ;
 
         }
 
@@ -109,14 +104,12 @@ public class EnemyController : MonoBehaviour {
 
         }
 
-        // test the distance between the player and the enemy
         if(Vector3.Distance(transform.position, target.position) <= chase_Distance) {
 
             enemy_Anim.Walk(false);
 
             enemy_State = EnemyState.CHASE;
 
-            // play spotted audio
             enemy_Audio.Play_ScreamSound();
 
         }
@@ -126,12 +119,9 @@ public class EnemyController : MonoBehaviour {
 
     void Chase() {
 
-        // enable the agent to move again
         navAgent.isStopped = false;
         navAgent.speed = run_Speed;
 
-        // set the player's position as the destination
-        // because we are chasing(running towards) the player
         navAgent.SetDestination(target.position);
 
         if (navAgent.velocity.sqrMagnitude > 0) {
@@ -144,40 +134,31 @@ public class EnemyController : MonoBehaviour {
 
         }
 
-        // if the distance between enemy and player is less than attack distance
         if(Vector3.Distance(transform.position, target.position) <= attack_Distance) {
 
-            // stop the animations
             enemy_Anim.Run(false);
             enemy_Anim.Walk(false);
             enemy_State = EnemyState.ATTACK;
 
-            // reset the chase distance to previous
             if(chase_Distance != current_Chase_Distance) {
                 chase_Distance = current_Chase_Distance;
             }
 
         } else if(Vector3.Distance(transform.position, target.position) > chase_Distance) {
-            // player run away from enemy
-
-            // stop running
             enemy_Anim.Run(false);
 
             enemy_State = EnemyState.PATROL;
 
-            // reset the patrol timer so that the function
-            // can calculate the new patrol destination right away
             patrol_Timer = patrol_For_This_Time;
 
-            // reset the chase distance to previous
             if (chase_Distance != current_Chase_Distance) {
                 chase_Distance = current_Chase_Distance;
             }
 
 
-        } // else
+        } 
 
-    } // chase
+    } 
 
     void Attack() {
 
@@ -192,9 +173,10 @@ public class EnemyController : MonoBehaviour {
 
             attack_Timer = 0f;
 
-            // play attack sound
             enemy_Audio.Play_AttackSound();
 
+            var playerHealth = mainPlayer.GetComponent<HealthScript>().health;
+            playerHealth -= enemyDamage;
         }
 
         if(Vector3.Distance(transform.position, target.position) >
@@ -205,7 +187,7 @@ public class EnemyController : MonoBehaviour {
         }
 
 
-    } // attack
+    } 
 
     void SetNewRandomDestination() {
 
@@ -217,8 +199,9 @@ public class EnemyController : MonoBehaviour {
         NavMeshHit navHit;
 
         NavMesh.SamplePosition(randDir, out navHit, rand_Radius, -1);
-        if(navAgent.SetDestination(navHit.position)) Debug.Log("navAgent is good!");
-        else Debug.Log("navAgent not working!");
+        if(navAgent.SetDestination(navHit.position)) // Debug.Log("navAgent is good!")
+                ;
+        //else Debug.Log("navAgent not working!");
 
     }
 
@@ -236,38 +219,4 @@ public class EnemyController : MonoBehaviour {
         get; set;
     }
 
-} // class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} 

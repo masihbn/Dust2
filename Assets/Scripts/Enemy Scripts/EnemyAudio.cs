@@ -12,7 +12,6 @@ public class EnemyAudio : MonoBehaviour {
     [SerializeField]
     private AudioClip[] attack_Clips;
 
-    // Use this for initialization
     void Awake () {
         audioSource = GetComponent<AudioSource>();
 	}
@@ -34,38 +33,4 @@ public class EnemyAudio : MonoBehaviour {
         audioSource.Play();
     }
 
-} // class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} 

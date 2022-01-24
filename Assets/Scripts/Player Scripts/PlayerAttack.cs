@@ -41,6 +41,8 @@ public class PlayerAttack : MonoBehaviour
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
+                weaponManager.GetCurrentSelectedWeapon().Turn_On_MuzzleFlash();
+                weaponManager.GetCurrentSelectedWeapon().Turn_Off_MuzzleFlash();
             }
         }
 
@@ -48,7 +50,11 @@ public class PlayerAttack : MonoBehaviour
         {
 
             if (Input.GetMouseButtonDown(0))
+            {
                 weaponManager.GetCurrentSelectedWeapon().ShootAnimation();
+                weaponManager.GetCurrentSelectedWeapon().Turn_On_MuzzleFlash();
+                weaponManager.GetCurrentSelectedWeapon().Turn_Off_MuzzleFlash();
+            }
         }
     }
 }

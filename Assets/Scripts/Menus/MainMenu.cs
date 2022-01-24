@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        Debug.Log("ANNNNNN");
+        Debug.Log("OPTIONS MENU TO BE OPENED");
     }
 
     public void QuitGame()
