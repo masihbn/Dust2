@@ -47,13 +47,16 @@ public class HealthScript : MonoBehaviour {
 
         if(is_Player) {
             // show the stats(display the health UI value)
-            player_Stats.Display_HealthStats(health);
+            //player_Stats.Display_HealthStats(health);
         }
 
         if(is_Soldier || is_Cannibal) {
             if(enemy_Controller.Enemy_State == EnemyState.PATROL) {
                 enemy_Controller.chase_Distance = 50f;
             }
+
+            health -= damage;
+            Debug.Log("Enemy health: " + health);
         }
 
         if(health <= 0f) {
@@ -110,7 +113,7 @@ public class HealthScript : MonoBehaviour {
                 enemies[i].GetComponent<EnemyController>().enabled = false;
             }
 
-            // call enemy manager to stop spawning enemis
+            // call enemy manager to stop spawning enemies
             EnemyManager.instance.StopSpawning();
 
             GetComponent<PlayerMovement>().enabled = false;

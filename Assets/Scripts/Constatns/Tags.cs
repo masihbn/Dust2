@@ -43,4 +43,10 @@ public class Tags : MonoBehaviour
         MAIN_MENU = 0,
         GAME_SCENE = 1
     }
+
+    public class CharacterTag
+    {
+        public const string PLAYER_TAG = "Player";
+        public const string ENEMY_TAG = "Enemy";
+    }
 }
