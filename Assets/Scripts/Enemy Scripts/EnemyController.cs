@@ -173,7 +173,7 @@ public class EnemyController : MonoBehaviour {
 
             attack_Timer = 0f;
 
-            //enemy_Audio.Play_AttackSound();
+            enemy_Audio.Play_AttackSound();
         }
 
         if(Vector3.Distance(transform.position, target.position) >

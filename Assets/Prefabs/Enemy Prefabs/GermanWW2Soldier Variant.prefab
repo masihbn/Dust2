@@ -1,53 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2026460847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2026460848}
-  - component: {fileID: 2026460849}
-  m_Layer: 0
-  m_Name: Attack Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2026460848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026460847}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2312763473633720592}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2026460849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026460847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ebb886dfe9bdc45a65bc01f35d3a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  radius: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!54 &5931214580199732193
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0898846, y: 2.311936, z: 0.8249034}
-  m_Center: {x: -0.08772143, y: 0.7919962, z: -0.017860651}
+  m_Size: {x: 0.44970196, y: 1.741752, z: 0.8249034}
+  m_Center: {x: -0.026608786, y: 0.9073032, z: -0.017860651}
 --- !u!82 &2223060572018722205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -207,7 +159,6 @@ MonoBehaviour:
   health: 100
   is_Player: 0
   is_Soldier: 1
-  is_Cannibal: 0
 --- !u!195 &353726336
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -242,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cff16ba6f98403184261eea6fcf683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scream_Clip: {fileID: 8300000, guid: 57e83485ea31f7e4c94eac5a08da8302, type: 3}
-  die_Clip: {fileID: 8300000, guid: cc5d0701b7e264a488ef8b8a3bff299e, type: 3}
+  scream_Clip: {fileID: 0}
+  die_Clip: {fileID: 0}
   attack_Clips:
   - {fileID: 8300000, guid: 2e3f80a79de15f94faa878cb5d3af786, type: 3}
 --- !u!114 &2323160435945734328
@@ -281,7 +232,7 @@ MonoBehaviour:
   patrol_Radius_Max: 60
   patrol_For_This_Time: 15
   wait_Before_Attack: 2
-  attack_Point: {fileID: 2026460847}
+  attack_Point: {fileID: 0}
 --- !u!1001 &3006434018405809000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,10 +1005,5 @@ PrefabInstance:
 --- !u!1 &2700354509321225785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f3e7d6b47f7298c49a1398f6fec9da46, type: 3}
-  m_PrefabInstance: {fileID: 3006434018405809000}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2312763473633720592 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8529701215987711368, guid: f3e7d6b47f7298c49a1398f6fec9da46, type: 3}
   m_PrefabInstance: {fileID: 3006434018405809000}
   m_PrefabAsset: {fileID: 0}

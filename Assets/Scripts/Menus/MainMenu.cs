@@ -6,6 +6,11 @@ using static Tags;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(((int)SceneIndex.GAME_SCENE));

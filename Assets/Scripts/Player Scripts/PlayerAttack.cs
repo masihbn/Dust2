@@ -31,39 +31,33 @@ public class PlayerAttack : MonoBehaviour
 
     void WeaponShoot()
     {
-        // if we have assault riffle
-        if (weapon_Manager.GetCurrentSelectedWeapon().fireType == WeaponFireType.MULTIPLE)
-        {
-            // if we press and hold left mouse click AND
-            // if Time is greater than the nextTimeToFire
-            if (Input.GetMouseButton(0) && Time.time > nextTimeToFire)
+        if (weapon_Manager.GetCurrentSelectedWeapon().fireType == WeaponFireType.MULTIPLE &&
+            Input.GetMouseButton(0) && Time.time > nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
+                //weapon_Manager.GetCurrentSelectedWeapon().Play_ShootSound();
                 StartCoroutine(ExampleCoroutine());
 
                 BulletFired();
             }
-        }
 
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) &&
+                weapon_Manager.GetCurrentSelectedWeapon().bulletType == WeaponBulletType.BULLET)
             {
-                if (weapon_Manager.GetCurrentSelectedWeapon().bulletType == WeaponBulletType.BULLET)
-                {
-                    weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                    StartCoroutine(ExampleCoroutine());
+                weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
+                //weapon_Manager.GetCurrentSelectedWeapon().Play_ShootSound();
+                StartCoroutine(ExampleCoroutine());
 
-                    BulletFired();
-                }
+                BulletFired();
+            } 
 
-            } // if input get mouse button 0
+        } 
 
-        } // else
-
-    } // weapon shoot
+    } 
 
     void BulletFired()
     {
@@ -76,17 +70,15 @@ public class PlayerAttack : MonoBehaviour
                 hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
             }
         }
-    } // bullet fired
+    } 
 
     IEnumerator ExampleCoroutine()
     {
         weapon_Manager.GetCurrentSelectedWeapon().Turn_On_MuzzleFlash();
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(0.01f);
 
-        //After we have waited 5 seconds print the time again.
         weapon_Manager.GetCurrentSelectedWeapon().Turn_Off_MuzzleFlash();
     }
 
-} // class
+} 

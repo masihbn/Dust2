@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using static Tags;
 
 public class HealthScript : MonoBehaviour {
 
@@ -25,7 +26,6 @@ public class HealthScript : MonoBehaviour {
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
 
-            // get enemy audio
             enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
 	}
@@ -42,9 +42,9 @@ public class HealthScript : MonoBehaviour {
         if (is_Dead)
             return;
 
-        //health -= damage;
+        health -= damage;
 
-        if(is_Player) {
+        if (is_Player) {
             gameObject.GetComponent<PlayerStatsUpdate>().Display_HealthStats(health);
         }
 
@@ -72,7 +72,9 @@ public class HealthScript : MonoBehaviour {
 
             GetComponent<Animator>().enabled = false;
             GetComponent<BoxCollider>().isTrigger = false;
-            GetComponent<Rigidbody>().AddTorque(-transform.forward * 15f);
+
+            var pushAmount = 15f;
+            GetComponent<Rigidbody>().AddTorque((-transform.forward * pushAmount * 2) + (-transform.up * pushAmount));
 
             enemy_Controller.enabled = false;
             navAgent.enabled = false;
@@ -87,24 +89,16 @@ public class HealthScript : MonoBehaviour {
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(_Tags.ENEMY_TAG);
 
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<EnemyController>().enabled = false;
-            }
+            for (int i = 0; i < enemies.Length; i++)          
+                enemies[i].GetComponent<EnemyController>().enabled = false;            
 
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             //GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
             Debug.Log("Player Died");
-            //SceneManager.LoadScene(2);
+            SceneManager.LoadScene((int)SceneIndex.MAIN_MENU);
         }
 
-        if(tag == _Tags.PLAYER_TAG) {
-
-            Debug.Log("Player Died");
-            SceneManager.LoadScene(2);
-
-        }
         else {
 
             Invoke("TurnOffGameObject", 3f);

@@ -60,19 +60,19 @@ public class WeaponHandler : MonoBehaviour {
         muzzleFlash.SetActive(false);
     }
 
-    void Play_ShootSound() {
+    public void Play_ShootSound() {
         shootSound.Play();
     }
 
-    void Play_ReloadSound() {
+    public void Play_ReloadSound() {
         reload_Sound.Play();
     }
 
-    void Turn_On_AttackPoint() {
+    public void Turn_On_AttackPoint() {
         attack_Point.SetActive(true);
     }
 
-    void Turn_Off_AttackPoint() {
+    public void Turn_Off_AttackPoint() {
         if(attack_Point.activeInHierarchy) {
             attack_Point.SetActive(false);
         }
